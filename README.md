@@ -22,8 +22,8 @@ git clone git://github.com/v-yarotsky/related.vim.git
 Usage:
 ------
 
-command `:RelatedOpenFile` opens related file
-command `:RelatedRunTest` runs related test
+command `:RelatedOpenFile` opens related file  
+command `:RelatedRunTest` runs related test  
 
 
 
