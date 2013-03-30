@@ -1,16 +1,16 @@
 module Related
 
   module Frameworks
-    def self.detect(related_paths)
+    def self.detect(related_paths, existence_checker = File)
       #TODO: support for minitest/spec
-      framework_class = if File.exists?(File.join(related_paths.repo_root, "spec/"))
-        Frameworks::Rspec
-      elsif File.exists?(File.join(related_paths.repo_root, "test/"))
-        Frameworks::TestUnit
+      framework_class = if existence_checker.exists?(related_paths.repo_root.join("spec/"))
+        Rspec
+      elsif existence_checker.exists?(related_paths.repo_root.join("test/"))
+        TestUnit
       else
-        Frameworks::Noop
+        Noop
       end
-      framework_class.new
+      framework_class.new(related_paths)
     end
   end
 

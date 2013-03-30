@@ -1,5 +1,4 @@
 require 'pathname'
-
 require 'test/unit'
 
 $:.unshift File.expand_path('../../lib', __FILE__)
@@ -23,7 +22,7 @@ class RelatedTestCase < Test::Unit::TestCase
     attr_accessor :repo_root, :current_file_relative_to_repo
 
     def initialize
-      @repo_root, @current_file_relative_to_repo = Pathname.new(""), Pathname.new("")
+      @repo_root, @current_file_relative_to_repo = Pathname.new("/path_to_repo/"), Pathname.new("")
     end
   end
 

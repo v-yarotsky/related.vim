@@ -16,7 +16,7 @@ module Related
         vim.message("Don't know whether it's test or source")
       end
 
-      def run_test(*)
+      def run_test
         vim.message("Don't know how to run related test")
       end
     end

@@ -3,7 +3,7 @@ require 'related/frameworks/noop'
 
 class TestNoop < RelatedTestCase
   def noop
-    @subject ||= Related::Frameworks::Noop.new(fake_vim)
+    @subject ||= Related::Frameworks::Noop.new(nil, fake_vim)
   end
 
   test "#source_for_test prints message" do

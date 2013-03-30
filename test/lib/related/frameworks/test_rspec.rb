@@ -3,11 +3,7 @@ require 'related/frameworks/rspec'
 
 class TestRspec < RelatedTestCase
   def rspec
-    @subject ||= Related::Frameworks::Rspec.new(fake_vim, fake_related)
-  end
-
-  def setup
-    fake_related.repo_root = pathname("/path_to_repo/")
+    @subject ||= Related::Frameworks::Rspec.new(fake_related, fake_vim)
   end
 
   test "#source_for_test returns source for test" do
@@ -29,7 +25,8 @@ class TestRspec < RelatedTestCase
   end
 
   test "#run_test runs test file" do
-    rspec.run_test("my_test_file.rb")
+    def rspec.test_file; "my_test_file.rb"; end
+    rspec.run_test
     assert_equal [":!clear && cd /path_to_repo/ && rspec my_test_file.rb"], fake_vim.commands
   end
 end
