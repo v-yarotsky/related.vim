@@ -3,6 +3,9 @@ require 'bundler/setup'
 require 'pathname'
 require 'test/unit'
 
+require 'coveralls'
+Coveralls.wear!
+
 $:.unshift File.expand_path('../../lib', __FILE__)
 
 class RelatedTestCase < Test::Unit::TestCase
