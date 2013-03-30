@@ -12,7 +12,7 @@ Requirements:
 Installation:
 -------------
 
-Using [pahtogen.vim](https://github.com/tpope/vim-pathogen):
+Using [pathogen.vim](https://github.com/tpope/vim-pathogen):
 
 ```sh
 cd ~/.vim/bundle
