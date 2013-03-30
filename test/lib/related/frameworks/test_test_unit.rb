@@ -1,9 +1,9 @@
 require 'test_helper'
-require 'related/test_unit'
+require 'related/frameworks/test_unit'
 
 class TestTestUnit < RelatedTestCase
   def t_u
-    @subject ||= Related::TestUnit.new(fake_vim, fake_related)
+    @subject ||= Related::Frameworks::TestUnit.new(fake_vim, fake_related)
   end
 
   def setup

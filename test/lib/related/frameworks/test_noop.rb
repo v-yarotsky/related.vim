@@ -1,9 +1,9 @@
 require 'test_helper'
-require 'related/noop'
+require 'related/frameworks/noop'
 
 class TestNoop < RelatedTestCase
   def noop
-    @subject ||= Related::Noop.new(fake_vim)
+    @subject ||= Related::Frameworks::Noop.new(fake_vim)
   end
 
   test "#source_for_test prints message" do

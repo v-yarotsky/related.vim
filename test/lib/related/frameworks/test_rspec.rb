@@ -1,9 +1,9 @@
 require 'test_helper'
-require 'related/rspec'
+require 'related/frameworks/rspec'
 
 class TestRspec < RelatedTestCase
   def rspec
-    @subject ||= Related::Rspec.new(fake_vim, fake_related)
+    @subject ||= Related::Frameworks::Rspec.new(fake_vim, fake_related)
   end
 
   def setup

@@ -2,9 +2,7 @@ require 'pathname'
 
 $: << File.dirname(__FILE__)
 
-require 'related/noop'
-require 'related/rspec'
-require 'related/test_unit'
+require 'related/frameworks'
 
 module Related
   extend self
@@ -22,26 +20,19 @@ module Related
   end
 
   def open_related_file
-    related_file = finder.is_test? ? finder.source_for_test : finder.test_for_source
+    related_file = framework.is_test? ? framework.source_for_test : framework.test_for_source
     VIM.command "silent :e #{related_file}"
   end
 
   def run_test
-    test_file = finder.is_test? ? current_file_relative_to_repo : finder.test_for_source
-    finder.run_test(test_file)
+    test_file = framework.is_test? ? current_file_relative_to_repo : framework.test_for_source
+    framework.run_test(test_file)
   end
 
-  #TODO: support for minitest/spec
-  def finder
-    finder_class = if File.exists?(File.join(repo_root, "spec/"))
-      Rspec
-    elsif File.exists?(File.join(repo_root, "test/"))
-      TestUnit
-    else
-      Noop
-    end
-    finder_class.new
+  def framework
+    Frameworks.detect(self)
   end
+
 end
 
 

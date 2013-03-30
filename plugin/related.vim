@@ -4,7 +4,7 @@ endif
 
 if !has("ruby")
   echohl ErrorMsg
-  echon "Sorry, Related requires ruby support."
+  echon "Sorry, related.vim requires ruby support."
   finish
 endif
 
