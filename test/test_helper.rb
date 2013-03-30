@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'bundler/setup'
 require 'pathname'
 require 'test/unit'
 
@@ -18,7 +20,7 @@ class RelatedTestCase < Test::Unit::TestCase
     end
   end
 
-  class FakeRelated
+  class FakeRelatedPaths
     attr_accessor :repo_root, :current_file_relative_to_repo
 
     def initialize
@@ -42,8 +44,8 @@ class RelatedTestCase < Test::Unit::TestCase
     @fake_vim ||= FakeVim.new
   end
 
-  def fake_related
-    @fake_related ||= FakeRelated.new
+  def fake_related_paths
+    @fake_related_paths ||= FakeRelatedPaths.new
   end
 
   def pathname(path)

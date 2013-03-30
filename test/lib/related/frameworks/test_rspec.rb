@@ -3,24 +3,24 @@ require 'related/frameworks/rspec'
 
 class TestRspec < RelatedTestCase
   def rspec
-    @subject ||= Related::Frameworks::Rspec.new(fake_related, fake_vim)
+    @subject ||= Related::Frameworks::Rspec.new(fake_related_paths, fake_vim)
   end
 
   test "#source_for_test returns source for test" do
-    fake_related.current_file_relative_to_repo = pathname("spec/lib/related/rspec_spec.rb")
+    fake_related_paths.current_file_relative_to_repo = pathname("spec/lib/related/rspec_spec.rb")
     assert_equal "/path_to_repo/lib/related/rspec.rb", rspec.source_for_test
   end
 
   test "#test_for_source returns test for source" do
-    fake_related.current_file_relative_to_repo = pathname("lib/related/rspec.rb")
+    fake_related_paths.current_file_relative_to_repo = pathname("lib/related/rspec.rb")
     assert_equal "/path_to_repo/spec/lib/related/rspec_spec.rb", rspec.test_for_source
   end
 
   test "#is_test?" do
-    fake_related.current_file_relative_to_repo = pathname("spec/lib/related/rspec_spec.rb")
+    fake_related_paths.current_file_relative_to_repo = pathname("spec/lib/related/rspec_spec.rb")
     assert rspec.is_test?, "spec/lib/related/rspec_spec.rb must be recognized as test"
 
-    fake_related.current_file_relative_to_repo = pathname("lib/related/rspec.rb")
+    fake_related_paths.current_file_relative_to_repo = pathname("lib/related/rspec.rb")
     assert !rspec.is_test?, "lib/related/rspec.rb must not be recognized as test"
   end
 

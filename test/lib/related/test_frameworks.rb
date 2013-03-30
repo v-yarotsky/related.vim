@@ -26,16 +26,16 @@ class TestFrameworks < RelatedTestCase
 
   test ".detect detects RSpec" do
     fake_file.exists!("/path_to_repo/spec/")
-    assert_equal Related::Frameworks::Rspec, frameworks.detect(fake_related, fake_file).class
+    assert_equal Related::Frameworks::Rspec, frameworks.detect(fake_related_paths, fake_file).class
   end
 
   test ".detect detects Test::Unit" do
     fake_file.exists!("/path_to_repo/test/")
-    assert_equal Related::Frameworks::TestUnit, frameworks.detect(fake_related, fake_file).class
+    assert_equal Related::Frameworks::TestUnit, frameworks.detect(fake_related_paths, fake_file).class
   end
 
   test ".detect falls back to Noop" do
-    assert_equal Related::Frameworks::Noop, frameworks.detect(fake_related, fake_file).class
+    assert_equal Related::Frameworks::Noop, frameworks.detect(fake_related_paths, fake_file).class
   end
 end
 
