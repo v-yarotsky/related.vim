@@ -1,10 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'pathname'
-require 'test/unit'
 
-require 'coveralls'
-Coveralls.wear!
+if ENV["TRAVIS"]
+  require 'coveralls'
+  Coveralls.wear!
+end
+
+require 'test/unit'
+require 'pathname'
 
 $:.unshift File.expand_path('../../lib', __FILE__)
 
