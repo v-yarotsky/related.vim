@@ -28,6 +28,15 @@ Usage:
 
 command `:RelatedOpenFile` opens related file
 command `:RelatedRunTest` runs related test
+command `:RelatedPipe` makes the plugin echo test commands to given named pipe
+command `:RelatedNoPipe` makes the plugin run test commands in background (default)
 
+`RelatedPipe` is useful for GUI MacVim:
 
+  $ mkfifo my_tests
+  $ while true; do sh -c "$(cat my_tests"); done
+
+in Macvim:
+
+  :RelatedPipe my_tests
 
