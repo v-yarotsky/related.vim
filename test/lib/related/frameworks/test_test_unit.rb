@@ -3,7 +3,7 @@ require 'related/frameworks/test_unit'
 
 class TestTestUnit < RelatedTestCase
   def t_u
-    @subject ||= Related::Frameworks::TestUnit.new(fake_related_paths, fake_vim)
+    @subject ||= Related::Frameworks::TestUnit.new(fake_related_paths)
   end
 
   test "#source_for_test returns source for test" do
@@ -24,10 +24,9 @@ class TestTestUnit < RelatedTestCase
     assert !t_u.is_test?, "lib/related/test_unit.rb must not be recognized as test"
   end
 
-  test "#run_test runs test file" do
+  test "#run_test_command returns a command to runs test file" do
     def t_u.test_file; "my_test_file.rb"; end
-    t_u.run_test
-    assert_equal [":!clear && cd /path_to_repo/ && ruby -Itest my_test_file.rb"], fake_vim.commands
+    assert_equal "ruby -Itest my_test_file.rb", t_u.run_test_command
   end
 end
 

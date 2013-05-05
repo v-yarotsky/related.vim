@@ -25,19 +25,17 @@ class TestBase < RelatedTestCase
   end
 
   def framework
-    @subject ||= DumbFramework.new(fake_related_paths, fake_vim)
+    @subject ||= DumbFramework.new(fake_related_paths)
   end
 
-  test "#open_related_file opens related test if current file is source" do
+  test "#related_file returns related test if current file is source" do
     framework.is_source!
-    framework.open_related_file
-    assert_equal ["silent :e test"], fake_vim.commands
+    assert_equal "test", framework.related_file
   end
 
-  test "#open_related_file opens related source if current file is test" do
+  test "#related_file returns related source if current file is test" do
     framework.is_test!
-    framework.open_related_file
-    assert_equal ["silent :e source"], fake_vim.commands
+    assert_equal "source", framework.related_file
   end
 
   test "#test_file returns current file if current file is test" do

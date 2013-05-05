@@ -5,19 +5,19 @@ module Related
 
     class Noop < Base
       def source_for_test
-        vim.message("Don't know how to find source for test")
+        raise RelatedError, "Don't know how to find source for test"
       end
 
       def test_for_source
-        vim.message("Don't know how to find test for source")
+        raise RelatedError, "Don't know how to find test for source"
       end
 
       def is_test?
-        vim.message("Don't know whether it's test or source")
+        raise RelatedError, "Don't know whether it's test or source"
       end
 
-      def run_test
-        vim.message("Don't know how to run related test")
+      def run_test_command
+        raise RelatedError, "Don't know how to run related test"
       end
     end
 

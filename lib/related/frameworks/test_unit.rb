@@ -11,8 +11,8 @@ module Related
         related_paths.current_file_relative_to_repo.to_s =~ /^#{test_path_prefix}\//
       end
 
-      def run_test
-        vim.command ":!clear && cd #{related_paths.repo_root} && ruby -I#{test_path_prefix} #{test_file}"
+      def run_test_command
+        "ruby -I#{test_path_prefix} #{test_file}"
       end
     end
 

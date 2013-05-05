@@ -1,3 +1,4 @@
+require 'related/errors'
 require 'related/matcher'
 
 module Related
@@ -6,15 +7,14 @@ module Related
     class Base
       RUBY_EXT = ".rb"
 
-      attr_accessor :vim, :related_paths
+      attr_accessor :related_paths
 
-      def initialize(related_paths = Related, vim = VIM)
-        @vim, @related_paths = vim, related_paths
+      def initialize(related_paths = Related)
+        @related_paths = related_paths
       end
 
-      def open_related_file
-        related_file = is_test? ? source_for_test : test_for_source
-        vim.command "silent :e #{related_file}"
+      def related_file
+        is_test? ? source_for_test : test_for_source
       end
 
       def test_file
