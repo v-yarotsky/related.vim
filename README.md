@@ -33,10 +33,10 @@ command `:RelatedNoPipe` makes the plugin run test commands in background (defau
 
 `RelatedPipe` is useful for GUI MacVim:
 
-  $ mkfifo my_tests
-  $ while true; do sh -c "$(cat my_tests"); done
+    $ mkfifo my_tests
+    $ while true; do sh -c "$(cat my_tests"); done
 
 in Macvim:
 
-  :RelatedPipe my_tests
+    :RelatedPipe my_tests
 
