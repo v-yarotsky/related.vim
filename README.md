@@ -5,7 +5,7 @@ Related.vim
 [![Coverage Status](https://coveralls.io/repos/v-yarotsky/related.vim/badge.png?branch=master)](https://coveralls.io/r/v-yarotsky/related.vim)
 [![Code Climate](https://codeclimate.com/github/v-yarotsky/related.vim.png)](https://codeclimate.com/github/v-yarotsky/related.vim)
 
-This plugin allows quick switching between ruby tests and sources, and to run tests
+This plugin allows quick switching between ruby/python tests and sources, and to run related tests synchronously/asynchronously.
 
 Requirements:
 -------------
