@@ -23,7 +23,8 @@ module Related
     if pipe.empty?
       VIM.command ":!#{command}"
     else
-      VIM.command ":!echo '#{command}' > #{pipe}"
+      VIM.command ":silent !echo '#{command}' > #{pipe}"
+      VIM.command ":redraw!"
     end
   rescue RelatedError => e
     VIM.message e.message
