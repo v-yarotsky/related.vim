@@ -9,7 +9,7 @@ module Related
       def test_file_suffix; "_spec"; end
 
       def is_test?
-        related_paths.current_file_relative_to_repo.basename(RUBY_EXT).to_s =~ %r{#{test_file_suffix}$}
+        related_paths.current_file_relative_to_repo.basename(test_ext).to_s =~ %r{#{test_file_suffix}$}
       end
 
       def run_test_command

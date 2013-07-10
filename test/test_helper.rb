@@ -36,8 +36,11 @@ class RelatedTestCase < Test::Unit::TestCase
 
   def self.test(name, &block)
     raise ArgumentError, "Example name can't be blank" if String(name).empty?
-    raise ArgumentError, "Example not provided" if block.nil?
-    define_method("test #{name}", &block)
+    define_method("test #{name}", &(block || method(:xtest)))
+  end
+
+  def self.xtest(name, &block)
+    warn "#{name}: pending"
   end
 
   private

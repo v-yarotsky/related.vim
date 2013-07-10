@@ -34,6 +34,11 @@ class TestFrameworks < RelatedTestCase
     assert_equal Related::Frameworks::TestUnit, frameworks.detect(fake_related_paths, fake_file).class
   end
 
+  test ".detect detects Nose" do
+    fake_file.exists!("/path_to_repo/*/test/__init__.py")
+    assert_equal Related::Frameworks::Nose, frameworks.detect(fake_related_paths, fake_file).class
+  end
+
   test ".detect falls back to Noop" do
     assert_equal Related::Frameworks::Noop, frameworks.detect(fake_related_paths, fake_file).class
   end

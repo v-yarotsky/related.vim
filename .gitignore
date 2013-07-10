@@ -4,3 +4,5 @@ tmp/
 .rvmrc
 .exrc
 coverage/
+.ruby-version
+.ruby-gemset
