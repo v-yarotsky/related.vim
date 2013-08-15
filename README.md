@@ -26,11 +26,11 @@ git clone git://github.com/v-yarotsky/related.vim.git
 Usage:
 ------
 
-command `:RelatedOpenFile` opens related file
-command `:RelatedRunTest` runs related test
-command `:RelatedRunLatestTest` runs the most recent test executed
-command `:RelatedPipe` makes the plugin echo test commands to given named pipe
-command `:RelatedNoPipe` makes the plugin run test commands in background (default)
+command `:RelatedOpenFile` opens related file  
+command `:RelatedRunTest` runs related test  
+command `:RelatedRunLatestTest` runs the most recent test executed  
+command `:RelatedPipe` makes the plugin echo test commands to given named pipe  
+command `:RelatedNoPipe` makes the plugin run test commands in background (default)  
 
 `RelatedPipe` is useful for GUI MacVim:
 
