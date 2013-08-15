@@ -28,6 +28,7 @@ Usage:
 
 command `:RelatedOpenFile` opens related file
 command `:RelatedRunTest` runs related test
+command `:RelatedRunLatestTest` runs the most recent test executed
 command `:RelatedPipe` makes the plugin echo test commands to given named pipe
 command `:RelatedNoPipe` makes the plugin run test commands in background (default)
 
@@ -39,4 +40,11 @@ command `:RelatedNoPipe` makes the plugin run test commands in background (defau
 in Macvim:
 
     :RelatedPipe my_tests
+
+It's better to have a convenient key mappings for these commands.
+I defined the following mappings in my `.vimrc` (I chose leader to be `\`):
+
+    nmap <leader>,, :RelatedRunLatestTest<CR>
+    nmap ,, :RelatedOpenFile<CR>
+    nmap , :RelatedRunTest<CR>
 
