@@ -42,7 +42,7 @@ module Related
 
       def source_for_test
         ideal_match = File.join(related_paths.repo_root, source_dir, source_file_basename)
-        Pathname.new(matcher.best_match(ideal_match, source_files) || ideal_match).cleanpath.to_s
+        best_file_match_or_new(ideal_match, source_files)
       end
 
       def source_file_basename
@@ -58,7 +58,7 @@ module Related
 
       def test_for_source
         ideal_match = File.join(related_paths.repo_root, test_dir, test_file_basename)
-        Pathname.new(matcher.best_match(ideal_match, test_files) || ideal_match).cleanpath.to_s
+        best_file_match_or_new(ideal_match, test_files)
       end
 
       def test_dir
@@ -71,6 +71,11 @@ module Related
           sub(/^/, test_file_prefix).sub(/$/, test_file_suffix).sub(/$/, test_ext)
       end
       private :test_file_basename
+
+      def best_file_match_or_new(ideal_match, files)
+        Pathname.new(matcher.best_match(ideal_match, files) || ideal_match).cleanpath.to_s
+      end
+      private :best_file_match_or_new
 
       def is_test?
         raise NotImplementedError
