@@ -13,7 +13,11 @@ $:.unshift File.expand_path('../../lib', __FILE__)
 
 class RelatedTestCase < Test::Unit::TestCase
   class FakeVim
-    attr_reader :messages, :commands
+    attr_reader :messages, :commands, :evaluations
+
+    def initialize
+      @evaluations = {}
+    end
 
     def message(msg)
       @messages ||= []
@@ -23,6 +27,14 @@ class RelatedTestCase < Test::Unit::TestCase
     def command(cmd)
       @commands ||= []
       @commands << cmd
+    end
+
+    def evaluate(expr, options = {})
+      if options.key?(:to)
+        @evaluations[expr] = options[:to]
+      else
+        @evaluations.fetch(expr) { raise ArgumentError, "VIM had to evaluate unexpected expression: #{expr}" }
+      end
     end
   end
 
@@ -36,11 +48,11 @@ class RelatedTestCase < Test::Unit::TestCase
 
   def self.test(name, &block)
     raise ArgumentError, "Example name can't be blank" if String(name).empty?
-    define_method("test #{name}", &(block || method(:xtest)))
+    block ? define_method("test #{name}", &block) : xtest(name)
   end
 
-  def self.xtest(name, &block)
-    warn "#{name}: pending"
+  def self.xtest(name)
+    define_method("test #{name}", proc { warn "#{name}: pending" })
   end
 
   private

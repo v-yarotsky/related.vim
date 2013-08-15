@@ -21,6 +21,10 @@ function! s:RunRelatedTest()
   :ruby Related.run_test
 endfunction
 
+function! s:RunLatestTest()
+  :ruby Related.run_latest_test
+endfunction
+
 function! s:RelatedPipe(pipe)
   let g:related_pipe = a:pipe
 endfunction
@@ -31,8 +35,11 @@ endfunction
 
 command! RelatedOpenFile      :call <SID>GetRelatedFile()
 command! RelatedRunTest       :call <SID>RunRelatedTest()
+command! RelatedRunLatestTest :call <SID>RunLatestTest()
 command! -nargs=1 RelatedPipe :call <SID>RelatedPipe(<f-args>)
 command! RelatedNoPipe        :call <SID>RelatedNoPipe()
+
+let g:related_pipe = ''
 
 finish
 

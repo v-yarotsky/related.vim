@@ -4,6 +4,7 @@ $: << File.dirname(__FILE__)
 
 require 'related/related_paths'
 require 'related/frameworks'
+require 'related/runners'
 
 module Related
   extend self
@@ -18,16 +19,14 @@ module Related
   end
 
   def run_test
-    pipe = VIM.evaluate("exists('g:related_pipe')") == 0 ? "" : VIM.evaluate("g:related_pipe")
-    command = "clear && cd #{related_paths.repo_root} && #{framework.run_test_command}"
-    if pipe.empty?
-      VIM.command ":!#{command}"
-    else
-      VIM.command ":silent !echo '#{command}' > #{pipe}"
-      VIM.command ":redraw!"
-    end
+    @command = "clear && cd #{related_paths.repo_root} && #{framework.run_test_command}"
+    runner.run(@command)
   rescue RelatedError => e
     VIM.message e.message
+  end
+
+  def run_latest_test
+    @command ? runner.run(@command) : VIM.message("No previous test runs")
   end
 
   private
@@ -38,6 +37,10 @@ module Related
 
   def related_paths
     @related_paths ||= RelatedPaths.new
+  end
+
+  def runner
+    Runners.detect
   end
 end
 
